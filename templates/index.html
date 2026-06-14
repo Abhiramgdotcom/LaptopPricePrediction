@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laptop Price Predictor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Laptop Price Prediction System</h1>
+    <p>Enter your laptop specifications to estimate its market price.</p>
+
+    <form action="/predict" method="POST">
+        <h2 class="section-title">Basic Information</h2>
+        <label>Company:</label>
+        <select name="company" required>
+            <option value="" selected disabled>Select Company</option>
+            <option value="Apple" {{ 'selected' if form and form.get('company') == 'Apple' else '' }}>Apple</option>
+            <option value="Asus" {{ 'selected' if form and form.get('company') == 'Asus' else '' }}>Asus</option>
+            <option value="Chuwi" {{ 'selected' if form and form.get('company') == 'Chuwi' else '' }}>Chuwi</option>
+            <option value="Dell" {{ 'selected' if form and form.get('company') == 'Dell' else '' }}>Dell</option>
+            <option value="Fujitsu" {{ 'selected' if form and form.get('company') == 'Fujitsu' else '' }}>Fujitsu</option>
+            <option value="Google" {{ 'selected' if form and form.get('company') == 'Google' else '' }}>Google</option>
+            <option value="HP" {{ 'selected' if form and form.get('company') == 'HP' else '' }}>HP</option>
+            <option value="Huawei" {{ 'selected' if form and form.get('company') == 'Huawei' else '' }}>Huawei</option>
+            <option value="LG" {{ 'selected' if form and form.get('company') == 'LG' else '' }}>LG</option>
+            <option value="Lenovo" {{ 'selected' if form and form.get('company') == 'Lenovo' else '' }}>Lenovo</option>
+            <option value="MSI" {{ 'selected' if form and form.get('company') == 'MSI' else '' }}>MSI</option>
+            <option value="Mediacom" {{ 'selected' if form and form.get('company') == 'Mediacom' else '' }}>Mediacom</option>
+            <option value="Microsoft" {{ 'selected' if form and form.get('company') == 'Microsoft' else '' }}>Microsoft</option>
+            <option value="Razer" {{ 'selected' if form and form.get('company') == 'Razer' else '' }}>Razer</option>
+            <option value="Samsung" {{ 'selected' if form and form.get('company') == 'Samsung' else '' }}>Samsung</option>
+            <option value="Toshiba" {{ 'selected' if form and form.get('company') == 'Toshiba' else '' }}>Toshiba</option>
+            <option value="Vero" {{ 'selected' if form and form.get('company') == 'Vero' else '' }}>Vero</option>
+            <option value="Xiaomi" {{ 'selected' if form and form.get('company') == 'Xiaomi' else '' }}>Xiaomi</option>
+        </select>
+
+        <br><br>
+
+        <label>Type:</label>
+ <select name="typename" required>
+    <option value="" selected disabled>Select Laptop Type</option>
+    <option value="Gaming" {{ 'selected' if form and form.get('typename') == 'Gaming' else '' }}>Gaming</option>
+    <option value="Netbook" {{ 'selected' if form and form.get('typename') == 'Netbook' else '' }}>Netbook</option>
+    <option value="Notebook" {{ 'selected' if form and form.get('typename') == 'Notebook' else '' }}>Notebook</option>
+    <option value="Ultrabook" {{ 'selected' if form and form.get('typename') == 'Ultrabook' else '' }}>Ultrabook</option>
+    <option value="Workstation" {{ 'selected' if form and form.get('typename') == 'Workstation' else '' }}>Workstation</option>
+ </select>
+
+        <br><br>
+
+        <label>RAM (GB):</label>
+ <select name="ram" required>
+    <option value="" selected disabled>Select RAM</option>
+    <option value="2" {{ 'selected' if form and form.get('ram') == '2' else '' }}>2 GB</option>
+    <option value="4" {{ 'selected' if form and form.get('ram') == '4' else '' }}>4 GB</option>
+    <option value="6" {{ 'selected' if form and form.get('ram') == '6' else '' }}>6 GB</option>
+    <option value="8" {{ 'selected' if form and form.get('ram') == '8' else '' }}>8 GB</option>
+    <option value="12" {{ 'selected' if form and form.get('ram') == '12' else '' }}>12 GB</option>
+    <option value="16" {{ 'selected' if form and form.get('ram') == '16' else '' }}>16 GB</option>
+    <option value="24" {{ 'selected' if form and form.get('ram') == '24' else '' }}>24 GB</option>
+    <option value="32" {{ 'selected' if form and form.get('ram') == '32' else '' }}>32 GB</option>
+    <option value="64" {{ 'selected' if form and form.get('ram') == '64' else '' }}>64 GB</option>
+ </select>
+
+        <br><br>
+
+        <label for="weight">Weight (kg):</label>
+        <input
+    type="text"
+    name="weight"
+    value="{{ form.get('weight', '') if form else '' }}"
+    required
+ >
+
+        <br><br>
+        <h2 class="section-title">Display</h2>
+        <label>Screen Size (Inches):</label>
+        <input
+    type="text"
+    name="inches"
+    value="{{ form.get('inches', '') if form else '' }}"
+    required
+ >
+
+        <br><br>
+
+        <label>Screen Resolution:</label>
+ <select name="resolution" required>
+    <option value="" selected disabled>Select Screen Resolution</option>
+    <option value="1366x768" {{ 'selected' if form and form.get('resolution') == '1366x768' else '' }}>1366x768</option>
+    <option value="1600x900" {{ 'selected' if form and form.get('resolution') == '1600x900' else '' }}>1600x900</option>
+    <option value="1920x1080" {{ 'selected' if form and form.get('resolution') == '1920x1080' else '' }}>1920x1080</option>
+    <option value="2560x1440" {{ 'selected' if form and form.get('resolution') == '2560x1440' else '' }}>2560x1440</option>
+    <option value="3200x1800" {{ 'selected' if form and form.get('resolution') == '3200x1800' else '' }}>3200x1800</option>
+    <option value="3840x2160" {{ 'selected' if form and form.get('resolution') == '3840x2160' else '' }}>3840x2160</option>
+ </select>
+
+        <br><br>
+
+        <label>Touchscreen:</label>
+ <select name="touchscreen" required>
+    <option value="" selected disabled>Select Touchscreen</option>
+    <option value="0" {{ 'selected' if form and form.get('touchscreen') == '0' else '' }}>No</option>
+    <option value="1" {{ 'selected' if form and form.get('touchscreen') == '1' else '' }}>Yes</option>
+ </select>
+
+        <br><br>
+
+        <label>IPS Display:</label>
+ <select name="ips" required>
+    <option value="" selected disabled>Select IPS Display</option>
+    <option value="0" {{ 'selected' if form and form.get('ips') == '0' else '' }}>No</option>
+    <option value="1" {{ 'selected' if form and form.get('ips') == '1' else '' }}>Yes</option>
+ </select>
+
+        <br><br>
+        <h2 class="section-title">Processor</h2>
+        <label>CPU Brand:</label>
+ <select name="cpu_brand" required>
+    <option value="" selected disabled>Select CPU Brand</option>
+    <option value="Intel" {{ 'selected' if form and form.get('cpu_brand') == 'Intel' else '' }}>Intel</option>
+    <option value="Samsung" {{ 'selected' if form and form.get('cpu_brand') == 'Samsung' else '' }}>Samsung</option>
+ </select>
+
+        <br><br>
+
+        <label>CPU Family:</label>
+ <select name="cpu_family" required>
+    <option value="" selected disabled>Select CPU Family</option>
+    <option value="Celeron" {{ 'selected' if form and form.get('cpu_family') == 'Celeron' else '' }}>Celeron</option>
+    <option value="Core i3" {{ 'selected' if form and form.get('cpu_family') == 'Core i3' else '' }}>Core i3</option>
+    <option value="Core i5" {{ 'selected' if form and form.get('cpu_family') == 'Core i5' else '' }}>Core i5</option>
+    <option value="Core i7" {{ 'selected' if form and form.get('cpu_family') == 'Core i7' else '' }}>Core i7</option>
+    <option value="Other" {{ 'selected' if form and form.get('cpu_family') == 'Other' else '' }}>Other</option>
+    <option value="Pentium" {{ 'selected' if form and form.get('cpu_family') == 'Pentium' else '' }}>Pentium</option>
+    <option value="Ryzen" {{ 'selected' if form and form.get('cpu_family') == 'Ryzen' else '' }}>Ryzen</option>
+    <option value="Xeon" {{ 'selected' if form and form.get('cpu_family') == 'Xeon' else '' }}>Xeon</option>
+ </select>
+
+        <br><br>
+        <h2 class="section-title">Storage</h2>
+       <label>SSD (GB):</label>
+ <select name="ssd" required>
+    <option value="" selected disabled>Select SSD</option>
+    <option value="0" {{ 'selected' if form and form.get('ssd') == '0' else '' }}>0 GB</option>
+    <option value="8" {{ 'selected' if form and form.get('ssd') == '8' else '' }}>8 GB</option>
+    <option value="16" {{ 'selected' if form and form.get('ssd') == '16' else '' }}>16 GB</option>
+    <option value="32" {{ 'selected' if form and form.get('ssd') == '32' else '' }}>32 GB</option>
+    <option value="64" {{ 'selected' if form and form.get('ssd') == '64' else '' }}>64 GB</option>
+    <option value="128" {{ 'selected' if form and form.get('ssd') == '128' else '' }}>128 GB</option>
+    <option value="180" {{ 'selected' if form and form.get('ssd') == '180' else '' }}>180 GB</option>
+    <option value="240" {{ 'selected' if form and form.get('ssd') == '240' else '' }}>240 GB</option>
+    <option value="256" {{ 'selected' if form and form.get('ssd') == '256' else '' }}>256 GB</option>
+    <option value="512" {{ 'selected' if form and form.get('ssd') == '512' else '' }}>512 GB</option>
+    <option value="1024" {{ 'selected' if form and form.get('ssd') == '1024' else '' }}>1 TB</option>
+ </select>
+
+        <br><br>
+
+        <label>HDD (GB):</label>
+ <select name="hdd" required>
+    <option value="" selected disabled>Select HDD</option>
+    <option value="0" {{ 'selected' if form and form.get('hdd') == '0' else '' }}>0 GB</option>
+    <option value="32" {{ 'selected' if form and form.get('hdd') == '32' else '' }}>32 GB</option>
+    <option value="128" {{ 'selected' if form and form.get('hdd') == '128' else '' }}>128 GB</option>
+    <option value="500" {{ 'selected' if form and form.get('hdd') == '512' else '' }}>512 GB</option>
+    <option value="1024" {{ 'selected' if form and form.get('hdd') == '1024' else '' }}>1 TB</option>
+    <option value="2048" {{ 'selected' if form and form.get('hdd') == '2048' else '' }}>2 TB</option>
+ </select>
+
+        <br><br>
+
+        <label>Hybrid (GB):</label>
+ <select name="hybrid" required>
+    <option value="" selected disabled>Select Hybrid</option>
+    <option value="0" {{ 'selected' if form and form.get('hybrid') == '0' else '' }}>0 GB</option>
+    <option value="512" {{ 'selected' if form and form.get('hybrid') == '512' else '' }}>512 GB</option>
+    <option value="1024" {{ 'selected' if form and form.get('hybrid') == '1024' else '' }}>1 TB</option>
+ </select>
+
+        <br><br>
+
+        <label>Flash Storage (GB):</label>
+ <select name="flash" required>
+    <option value="" selected disabled>Select Flash Storage</option>
+    <option value="0" {{ 'selected' if form and form.get('flash') == '0' else '' }}>0 GB</option>
+    <option value="16" {{ 'selected' if form and form.get('flash') == '16' else '' }}>16 GB</option>
+    <option value="32" {{ 'selected' if form and form.get('flash') == '32' else '' }}>32 GB</option>
+    <option value="64" {{ 'selected' if form and form.get('flash') == '64' else '' }}>64 GB</option>
+    <option value="128" {{ 'selected' if form and form.get('flash') == '128' else '' }}>128 GB</option>
+    <option value="256" {{ 'selected' if form and form.get('flash') == '256' else '' }}>256 GB</option>
+    <option value="512" {{ 'selected' if form and form.get('flash') == '512' else '' }}>512 GB</option>
+ </select>
+
+        <br><br>
+        <h2 class="section-title">Graphics And Operating System</h2>
+        <label>GPU Brand:</label>
+        <select name="gpu_brand">
+            <option value="" selected disabled>Select GPU Brand</option>
+            <option value="AMD" {{ 'selected' if form and form.get('gpu_brand') == 'AMD' else '' }}>AMD</option>
+            <option value="Intel" {{ 'selected' if form and form.get('gpu_brand') == 'Intel' else '' }}>Intel</option>
+            <option value="Nvidia" {{ 'selected' if form and form.get('gpu_brand') == 'Nvidia' else '' }}>Nvidia</option>
+        </select>
+
+        <br><br>
+
+        <label>Operating System:</label>
+        <select name="opsys">
+            <option value="" selected disabled>Select Operating System</option>
+            <option value="Chrome OS" {{ 'selected' if form and form.get('opsys') == 'Chrome OS' else '' }}>Chrome OS</option>
+            <option value="Linux" {{ 'selected' if form and form.get('opsys') == 'Linux' else '' }}>Linux</option>
+            <option value="Mac OS X" {{ 'selected' if form and form.get('opsys') == 'Mac OS X' else '' }}>Mac OS X</option>
+            <option value="No OS" {{ 'selected' if form and form.get('opsys') == 'No OS' else '' }}>No OS</option>
+            <option value="Windows 10" {{ 'selected' if form and form.get('opsys') == 'Windows 10' else '' }}>Windows 10</option>
+            <option value="Windows 10 s" {{ 'selected' if form and form.get('opsys') == 'Windows 10 s' else '' }}>Windows 10 S</option>
+            <option value="Windows 7" {{ 'selected' if form and form.get('opsys') == 'Windows 7' else '' }}>Windows 7</option>
+            <option value="macOS" {{ 'selected' if form and form.get('opsys') == 'macOS' else '' }}>macOS</option>
+        </select>
+
+        <br><br>
+
+        <button type="Submit">Predict Price</button>
+        <button type="button" onclick="window.location='/'">
+    Reset
+ </button>
+
+    </form>
+
+ {% if prediction %}
+ <div class="prediction">
+    <h2>Estimated Laptop Price</h2>
+    <h1>₹ {{ "{:,.0f}".format(prediction) }}</h1>
+ </div>
+ {% endif %}
+ {% if error %}
+ <div class="prediction">
+    <h3>{{ error }}</h3>
+ </div>
+ {% endif %}
+ <hr>
+ <p style="text-align:center;">
+    Laptop Price Prediction System
+ </p>
+</div>
+</body>
+</html>
