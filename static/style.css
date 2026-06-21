@@ -1,10 +1,21 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #eef2f7;
     margin: 0;
     padding: 30px;
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
 }
-
+body {
+    font-family: 'Poppins', sans-serif;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 .container {
     max-width: 700px;
     margin: auto;
@@ -55,17 +66,57 @@ button[type="submit"] {
     background-color: #2563eb;
     color: white;
 }
+button:hover {
+    transform: translateY(-2px);
+}
+button {
+    transition: all 0.3s ease;
+}
 
-.prediction {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #e8f5e9;
+input,
+select {
+    transition: all 0.3s ease;
+}
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 14px 25px;
     border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
+.prediction {
     text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.prediction h1 {
+    font-size: 40px;
 }
 
 .section-title {
     margin-top: 30px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 5px;
+}
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
 }
