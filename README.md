@@ -14,3 +14,6 @@ A Flask-based web application that predicts laptop prices using a machine learni
 - Pandas
 - scikit-learn
 - HTML/CSS/JavaScript
+
+## Check my site on
+https://laptoppriceprediction-fset.onrender.com/
